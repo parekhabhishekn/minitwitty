@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head"></head>
+<body>
+<nav th:replace="layout :: nav"></nav>
+<div th:replace="layout :: flash"></div>
+<div class="container">
+    <ul>
+        <li th:each="task : ${twits}">
+            <form method="post" th:action="@{/twit}" class="inline twit-item">
+                <input type="hidden" name="id" th:value="${twit.id}"/>
+                <label th:text="${twit.message}"></label>
+            </form>
+        </li>
+        <li>
+            <form method="post" th:object="${newTwit}" th:action="@{/twits}" class="inline new-item">
+                <label><input type="text" th:field="*{message}" placeholder="New Twit" autocomplete="off"/></label>
+            </form>
+        </li>
+    </ul>
+</div>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>
